@@ -10,16 +10,6 @@ $last_name = $result["message"]["from"]["last_name"];
 $message_id = $result["message"]["message_id"];
 
 
-// functions
-function get_string_between($string, $start, $end)
-{
-    $string = ' ' . $string;
-    $ini = strpos($string, $start);
-    if ($ini == 0) return '';
-    $ini += strlen($start);
-    $len = strpos($string, $end, $ini) - $ini;
-    return substr($string, $ini, $len);
-}
 function get_bitly_short_url($url,$login,$appkey,$format='json') {
     $connectURL = 'http://api.bit.ly/v3/shorten?login='.$login.'&apiKey='.$appkey.'&uri='.urlencode($url).'&format='.$format;
     $obj = json_decode(file_get_contents($connectURL), true);
