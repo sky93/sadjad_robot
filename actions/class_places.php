@@ -1,7 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/../autoload.php';
 
-
 $content = [
     'chat_id' => $data->chat_id,
     'text' => "در دست کد نویسی ... ",

@@ -1,7 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/../autoload.php';
 
-
 $startDate = '2016-09-22';
 $endDate = date("Y/m/d");
 

@@ -1,7 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/../autoload.php';
 
-
 // todo:  سش نیست الان . یادم باشه اینو درست کنم 5 شنبه
 $content = [
     'chat_id' => $data->chat_id,
