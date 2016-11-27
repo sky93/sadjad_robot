@@ -1,6 +1,13 @@
 ﻿<?php
 require_once 'autoload.php';
 
+$last_user_id = $database->insert("users", [
+    "id" => $data->user_id,
+    "username" => $data->username,
+    "first_name" => $data->first_name,
+    "last_name" => $data->last_name,
+    'date_created' => date("Y-m-d H:i:s")
+]);
 
 switch ($data->text) {
     case '/start':
