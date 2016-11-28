@@ -1,23 +1,17 @@
 <?php
-
-
 class keyboard
 {
     public $buttons = [
-        'my_uni'       => '💡 دانشکده من',
-
-        'self'         => '🍗 سیستم تغذیه',
-        'user_profile' => '👤 پروفایل دانشجویی',
-
+        'self'         => '🍗 سیستم تغذیه من',
+        'user_profile' => '📒 برنامه درسی من',
         'class_places' => '👣 مکان کلاس من',
         'week'         => '⁉ ️هفته آموزشی',
-
-        'calender'     => 'تقویم آموزشی',
-        'map'          => '📍 مسیریابی تا دانشگاه',
-
-        'cancel_news'  => 'اخبار لغو کلاس ها',
-        'news'         => 'آخرین اخبار دانشگاه',
-
+        'calender'     => '📅 تقویم آموزشی',
+        'map_uni'      => '📍 مسیریابی تا دانشگاه',
+        'map_spo'      => '📍 مسیریابی تا سالن',
+        'cancel_news'  => '🔴 اخبار لغو کلاس ها',
+        'news'         => '🔵 آخرین اخبار دانشگاه',
+        'internet'     => '📡 حجم اینترنت من',
         'contact_us'   => '✍ تماس با ما'
     ];
 
@@ -26,23 +20,23 @@ class keyboard
         return  '{
                    "keyboard": [
                                  [
-                                     "' . $this->buttons['my_uni'] . '"
+                                     "' . $this->buttons['user_profile'] . '"
                                  ],
                                  [
-                                    "' . $this->buttons['self'] . '",
-                                    "' . $this->buttons['user_profile'] . '"
+                                    "' . $this->buttons['week'] . '",
+                                    "' . $this->buttons['calender'] . '"
                                  ],
                                  [
-                                    "' . $this->buttons['class_places'] . '",
-                                    "' . $this->buttons['week'] . '"
-                                 ],
-                                 [
-                                    "' . $this->buttons['calender'] . '",
-                                    "' . $this->buttons['map'] . '"
+                                    "' . $this->buttons['map_uni'] . '",
+                                    "' . $this->buttons['map_spo'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['cancel_news'] . '",
-                                    "' . $this->buttons['cancel_news'] . '"
+                                    "' . $this->buttons['news'] . '"
+                                 ],
+                                 [
+                                    "' . $this->buttons['internet'] . '",
+                                    "' . $this->buttons['self'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['contact_us'] . '"
@@ -55,78 +49,21 @@ class keyboard
                 }';
     }
 
-    public function key_bargh()
-    {
-        return
-            '{
- "keyboard":[
-[
-    "همایش های Sadjad I/O"
-]
-,
-[
-    "مسابقات برنامه نویسی ACM"
-]
-,
-[
-    "مسابقات کشوری accept"
-]
-,
-[
-    "بازگشت به منو اصلی➡️"
-]
-            ],
-            "resize_keyboard" : true,
-            "ForceReply":{
-                "force_reply" : true
-            }
-        }';
-    }
 
-    public function link_button()
+public function link_button()
     {
         return
             '{"inline_keyboard":[
 [
 {
     "text":"بیشتر بخوانید ...",
-    "url":"https://sadjad.ac.ir"
+    "url":"https://google.com"
     }]],
     "ForceReply":
     {
      "force_reply" : true
     }
 }';
-    }
-
-
-    public function key_uni()
-    {
-        return '{
- "keyboard":[
-[
-    "دانشکده مهندسی کامپیوتر"
-]
-,
-[
-    "دانشکده مهندسی صنایع و مواد"
-]
-,
-[
-    "دانشکده مهندسی برق و مهندسی پزشکی"
-]
-,
-[
-    "دانشکده مهندسی عمران و معماری"
-],
-[
-    "➡ بازگشت به منو اصلی️"
-]
-            ],
-            "resize_keyboard" : true,
-            "ForceReply":{
-                "force_reply" : true
-            }
-        }';
-    }
 }
+}
+
