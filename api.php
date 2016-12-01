@@ -20,6 +20,9 @@ if ( $constants->last_message !== null ) {
         case 'internet_credit':
             require_once 'actions/internet_credit.php';
             break;
+        case 'self_service':
+            require_once 'actions/self_service.php';
+            break;
         default:
             echo "wrong";
     }
@@ -48,8 +51,8 @@ if ( $constants->last_message !== null ) {
         case $keyboard->buttons['calender']:
             require_once 'actions/calender.php';
             break;
-        case $keyboard->buttons['self']:
-            require_once 'actions/self.php';
+        case $keyboard->buttons['self_service']:
+            require_once 'actions/self_service.php';
             break;
         case $keyboard->buttons['cancel_news']:
             require_once 'actions/cancel_news.php';

@@ -2,7 +2,7 @@
 class keyboard
 {
     public $buttons = [
-        'self'         => '🍗 سیستم تغذیه من',
+        'self_service' => '🍗 سیستم تغذیه من',
         'user_profile' => '📒 برنامه درسی من',
         'class_places' => '👣 مکان کلاس من',
         'week'         => '⁉ ️هفته آموزشی',
@@ -16,6 +16,8 @@ class keyboard
         'go_back'      => '➡️ بازگشت',
         'save'         => '✅ ذخیره کن',
         'dont_save'    => '❌ ذخیره نکن',
+        'self_service_this_week'    => '🍖 منوی این هفته',
+        'self_service_credit'       => '💴 موجودی حساب من',
     ];
 
     public function key_start()
@@ -39,7 +41,7 @@ class keyboard
                                  ],
                                  [
                                     "' . $this->buttons['internet'] . '",
-                                    "' . $this->buttons['self'] . '"
+                                    "' . $this->buttons['self_service'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['contact_us'] . '"
@@ -74,6 +76,25 @@ class keyboard
                                  [
                                      "' . $this->buttons['save'] . '",
                                      "' . $this->buttons['dont_save'] . '"
+                                 ]
+                               ],
+                               "resize_keyboard" : true,
+                               "ForceReply":{
+                                   "force_reply" : true
+                               }
+                }';
+    }
+
+    public function self_service_main()
+    {
+        return  '{
+                   "keyboard": [
+                                 [
+                                     "' . $this->buttons['self_service_this_week'] . '",
+                                     "' . $this->buttons['self_service_credit'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['go_back'] . '"
                                  ]
                                ],
                                "resize_keyboard" : true,
