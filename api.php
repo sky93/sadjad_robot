@@ -23,6 +23,12 @@ if ( $constants->last_message !== null ) {
         case 'self_service':
             require_once 'actions/self_service.php';
             break;
+        case 'uni_route':
+            require_once 'actions/uni_route.php';
+            break;
+        case 'spo_route':
+            require_once 'actions/spo_route.php';
+            break;
         default:
             echo "wrong";
     }
@@ -50,6 +56,12 @@ if ( $constants->last_message !== null ) {
             break;
         case $keyboard->buttons['calender']:
             require_once 'actions/calender.php';
+            break;
+        case $keyboard->buttons['map_uni']:
+            require_once 'actions/to_uni.php';
+            break;
+        case $keyboard->buttons['map_spo']:
+            require_once 'actions/to_spo.php';
             break;
         case $keyboard->buttons['self_service']:
             require_once 'actions/self_service.php';
