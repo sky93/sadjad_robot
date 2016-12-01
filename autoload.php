@@ -6,6 +6,7 @@ require_once 'config/config.php';
 require_once 'lib/functions.php';
 require_once 'lib/WebHookGet.php';
 require_once 'lib/Keyboard.php';
+require_once 'lib/Constant.php';
 
 $auth = new config();
 $telegram = new Telegram($auth->bot_id);
@@ -19,3 +20,4 @@ $database = new medoo([
     'password' => $auth->database_password,
     'charset' => 'utf8mb4'
 ]);
+$constants = new Constant($database, $data);

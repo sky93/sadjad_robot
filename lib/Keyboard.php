@@ -12,7 +12,10 @@ class keyboard
         'cancel_news'  => '🔴 اخبار لغو کلاس ها',
         'news'         => '🔵 آخرین اخبار دانشگاه',
         'internet'     => '📡 حجم اینترنت من',
-        'contact_us'   => '✍ تماس با ما'
+        'contact_us'   => '✍ تماس با ما',
+        'go_back'      => '➡️ بازگشت',
+        'save'         => '✅ ذخیره کن',
+        'dont_save'    => '❌ ذخیره نکن',
     ];
 
     public function key_start()
@@ -46,6 +49,37 @@ class keyboard
                               "ForceReply":{
                                   "force_reply" : true
                               }
+                }';
+    }
+
+    public function go_back()
+    {
+        return  '{
+                   "keyboard": [
+                                 [
+                                     "' . $this->buttons['go_back'] . '"
+                                 ]
+                               ],
+                               "resize_keyboard" : true,
+                               "ForceReply":{
+                                   "force_reply" : true
+                               }
+                }';
+    }
+
+    public function save_dont_save()
+    {
+        return  '{
+                   "keyboard": [
+                                 [
+                                     "' . $this->buttons['save'] . '",
+                                     "' . $this->buttons['dont_save'] . '"
+                                 ]
+                               ],
+                               "resize_keyboard" : true,
+                               "ForceReply":{
+                                   "force_reply" : true
+                               }
                 }';
     }
 
