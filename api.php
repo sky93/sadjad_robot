@@ -16,9 +16,8 @@ $database->insert("users", [
 //$current .= date ("Y-m-d H:i:s", time()) . ":\n" . json_encode(json_decode(file_get_contents('php://input')), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
 //file_put_contents($file, $current);
 
-if ($data->user_id == '96253493' || $data->user_id == '93267971') {
 
-    if ($constants->last_message !== null && $data->text != '/start') {
+if ($constants->last_message !== null && $data->text != '/start') {
 
     switch ($constants->last_message) {
         case 'news':
@@ -47,7 +46,7 @@ if ($data->user_id == '96253493' || $data->user_id == '93267971') {
             break;
     }
 
-    } else {
+} else {
 
     switch ($data->text) {
         case '/start':
@@ -81,12 +80,4 @@ if ($data->user_id == '96253493' || $data->user_id == '93267971') {
             require_once 'actions/start.php';
             break;
     }
-}
-else{
-    $telegram->sendPhoto([
-        'chat_id' => $data->chat_id,
-        'photo'=> "AgADBAADlrQxGzW2vAWsPhk7KmkQxZZcaRkABIsU1hv_MAuHVSMCAAEC",
-        'caption' => 'You\'r access to this bot has been blocked. We\'re sorry. Please contact Sepehr Mohaghegh (@sky93)',
-
-    ]);
 }
