@@ -9,7 +9,7 @@ class Constant
     public function __construct($database, $Telegram_Data)
     {
         $this->user = $database->select( 'users', '*', [ 'id[=]' => $Telegram_Data->user_id ] );
-        $this->last_message = $this->user[0]['last_query'];
+        $this->last_message = isset($this->user[0]['last_query']) ? $this->user[0]['last_query'] : null;
     }
 
     public function user($data = null)
