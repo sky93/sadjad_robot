@@ -5,10 +5,12 @@ class keyboard
         'self_service' => '🍗 سیستم تغذیه من',
         'user_profile' => '📒 برنامه درسی من',
         'class_places' => '👣 مکان کلاس من',
-        'week'         => '⁉ ️هفته آموزشی',
+        'week'         => '❓ هفته زوج یا فرد!',
         'calender'     => '📅 تقویم آموزشی',
-        'map_uni'      => '📍 مسیریابی تا دانشگاه',
+        'location_to_university'     => '🏢📍 مکان فعلی من تا دانشگاه',
+        'location'     => '📍 تا دانشگاه',
         'map_spo'      => '📍 مسیریابی تا سالن',
+        'send_my_current_location' => '🌇 ارسال مکان کنونی من',
         'cancel_news'  => '😱 اخبار لغو کلاس ها',
         'news'         => '🗞 آخرین خبرهای دانشگاه',
         'internet'     => '📡 حجم اینترنت من',
@@ -30,12 +32,10 @@ class keyboard
                                      "' . $this->buttons['user_profile'] . '"
                                  ],
                                  [
-                                    "' . $this->buttons['week'] . '",
-                                    "' . $this->buttons['calender'] . '"
+                                    "' . $this->buttons['week'] . '"
                                  ],
                                  [
-                                    "' . $this->buttons['map_uni'] . '",
-                                    "' . $this->buttons['map_spo'] . '"
+                                    "' . $this->buttons['location'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['news'] . '"
@@ -129,21 +129,44 @@ class keyboard
                 }';
     }
 
-
-public function link_button()
+    public function location_list()
     {
-        return
-            '{"inline_keyboard":[
-[
-{
-    "text":"بیشتر بخوانید ...",
-    "url":"https://google.com"
-    }]],
-    "ForceReply":
-    {
-     "force_reply" : true
+        return  '{
+                   "keyboard": [
+                                 [
+                                     "' . $this->buttons['location_to_university'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['go_back'] . '"
+                                 ]
+                               ],
+                               "resize_keyboard" : true,
+                               "ForceReply":{
+                                   "force_reply" : true
+                               }
+                }';
     }
-}';
-}
+
+    public function send_my_current_location()
+    {
+        return  '{
+                   "keyboard": [
+                                 [
+                                     {
+                                        "text" : "' . $this->buttons['send_my_current_location'] . '",
+                                        "request_location" : true
+                                     }
+                                 ],
+                                 [
+                                     "' . $this->buttons['go_back'] . '"
+                                 ]
+                               ],
+                               "resize_keyboard" : true,
+                               "request" : true,
+                               "ForceReply":{
+                                   "force_reply" : true
+                               }
+                }';
+    }
 }
 
