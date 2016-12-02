@@ -9,8 +9,8 @@ class keyboard
         'calender'     => '📅 تقویم آموزشی',
         'map_uni'      => '📍 مسیریابی تا دانشگاه',
         'map_spo'      => '📍 مسیریابی تا سالن',
-        'cancel_news'  => '🔴 اخبار لغو کلاس ها',
-        'news'         => '🔵 آخرین اخبار دانشگاه',
+        'cancel_news'  => '😱 اخبار لغو کلاس ها',
+        'news'         => '🗞 آخرین خبرهای دانشگاه',
         'internet'     => '📡 حجم اینترنت من',
         'contact_us'   => '✍ تماس با ما',
         'go_back'      => '➡️ بازگشت',
@@ -18,6 +18,8 @@ class keyboard
         'dont_save'    => '❌ ذخیره نکن',
         'self_service_this_week'    => '🍖 منوی این هفته',
         'self_service_credit'       => '💴 موجودی حساب من',
+        'acm_news'     => '⌨ اخبار مسابقه‌ی acm',
+        'all_news'     => '📻 تمامی خبرها',
     ];
 
     public function key_start()
@@ -36,7 +38,6 @@ class keyboard
                                     "' . $this->buttons['map_spo'] . '"
                                  ],
                                  [
-                                    "' . $this->buttons['cancel_news'] . '",
                                     "' . $this->buttons['news'] . '"
                                  ],
                                  [
@@ -58,6 +59,30 @@ class keyboard
     {
         return  '{
                    "keyboard": [
+                                 [
+                                     "' . $this->buttons['go_back'] . '"
+                                 ]
+                               ],
+                               "resize_keyboard" : true,
+                               "ForceReply":{
+                                   "force_reply" : true
+                               }
+                }';
+    }
+
+    public function news()
+    {
+        return  '{
+                   "keyboard": [
+                                 [
+                                     "' . $this->buttons['cancel_news'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['acm_news'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['all_news'] . '"
+                                 ],
                                  [
                                      "' . $this->buttons['go_back'] . '"
                                  ]

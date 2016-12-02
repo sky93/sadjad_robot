@@ -14,6 +14,9 @@ $database->insert("users", [
 if ( $constants->last_message !== null ) {
 
     switch ($constants->last_message) {
+        case 'news':
+            require_once 'actions/news.php';
+            break;
         case 'contact_us':
             require_once 'actions/contact_us.php';
             break;
@@ -71,9 +74,6 @@ if ( $constants->last_message !== null ) {
             break;
         case $keyboard->buttons['self_service']:
             require_once 'actions/self_service.php';
-            break;
-        case $keyboard->buttons['cancel_news']:
-            require_once 'actions/cancel_news.php';
             break;
         case $keyboard->buttons['week']:
             require_once 'actions/week.php';
