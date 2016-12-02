@@ -2,7 +2,7 @@
 require_once dirname(__FILE__) . '/../autoload.php';
 
 date_default_timezone_set('Asia/Tehran');
-$startDate = '2016-09-27';
+$startDate = '2016-09-17';
 $endDate = date("Y-m-d");
 
 $startDateWeekCnt = round(floor( date('d',strtotime($startDate)) / 7)) ;
@@ -51,7 +51,7 @@ $letter2 = [
 ];
 
 $date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($startDate)));
-$total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) - 2 ;
+$total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) + $endDateWeekCnt - $startDateWeekCnt ;
 $t = 16 - $total_no_OfWeek;
 if( $total_no_OfWeek % 2 == 0 ) {
     $total_no_OfWeek = $letter[(int)$total_no_OfWeek];
