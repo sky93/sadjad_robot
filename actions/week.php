@@ -51,7 +51,7 @@ $letter2 = [
 ];
 
 $date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($startDate)));
-$total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) + 2 ;
+$total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) + $endDate - $startDate - 1;
 $t = 16 - $total_no_OfWeek;
 if( $total_no_OfWeek % 2 == 0 ) {
     $total_no_OfWeek = $letter[(int)$total_no_OfWeek];
