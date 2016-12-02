@@ -6,7 +6,7 @@ if ( $constants->last_message === null ) {
     $database->update("users", [ 'last_query' => 'contact_us' ], [ 'id' => $data->user_id ]);
     $content = [
         'chat_id' => $data->chat_id,
-        'text' => "اگر پیشنهاد یا انتقادی برای بات دارید و یا مشکلی در کار بات مشاهده کردید ممنون می‌شیم بهمون اطلاع بدین: ",
+        'text' => "اگر پیشنهاد یا انتقادی برای بات دارید و یا مشکلی در کار بات مشاهده کردید ممنون می‌شیم بهمون اطلاع بدین:",
         'reply_markup' => $keyboard->go_back()
     ];
     $telegram->sendMessage($content);
@@ -24,6 +24,7 @@ if ( $constants->last_message === null ) {
         ]);
 
     } else {
+
         $database->insert("ideas", [
             "user_id" => $data->user_id,
             "message" => $data->text,
@@ -35,7 +36,6 @@ if ( $constants->last_message === null ) {
             'text' => "ممنون از شما. نظر شما ثبت گردید.",
             'reply_markup' => $keyboard->key_start()
         ]);
+
     }
 }
-
-
