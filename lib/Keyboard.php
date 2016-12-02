@@ -1,14 +1,15 @@
-<?php
+﻿<?php
 class keyboard
 {
     public $buttons = [
         'self_service' => '🍗 سیستم تغذیه من',
-        'user_profile' => '📒 برنامه درسی من',
+        'student_schedule' => '📒 برنامه درسی من',
         'class_places' => '👣 مکان کلاس من',
         'week'         => '❓ هفته زوج یا فرد!',
         'calender'     => '📅 تقویم آموزشی',
         'location_to_university'     => '🏢📍 مکان فعلی من تا دانشگاه',
-        'location'     => '📍 تا دانشگاه',
+        'location_to_sport'     => '⚽️📍 مکان فعلی من تا سالن تربیت بدنی',
+        'location'     => '📍 مسیریابی ها',
         'map_spo'      => '📍 مسیریابی تا سالن',
         'send_my_current_location' => '🌇 ارسال مکان کنونی من',
         'cancel_news'  => '😱 اخبار لغو کلاس ها',
@@ -29,7 +30,7 @@ class keyboard
         return  '{
                    "keyboard": [
                                  [
-                                     "' . $this->buttons['user_profile'] . '"
+                                     "' . $this->buttons['student_schedule'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['week'] . '"
@@ -135,6 +136,9 @@ class keyboard
                    "keyboard": [
                                  [
                                      "' . $this->buttons['location_to_university'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['location_to_sport'] . '"
                                  ],
                                  [
                                      "' . $this->buttons['go_back'] . '"
