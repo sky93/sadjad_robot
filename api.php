@@ -17,6 +17,9 @@ if ( $constants->last_message !== null ) {
         case 'contact_us':
             require_once 'actions/contact_us.php';
             break;
+        case 'stu_plan':
+            require_once 'actions/user_profile.php';
+            break;
         case 'internet_credit':
             require_once 'actions/internet_credit.php';
             break;
@@ -28,6 +31,9 @@ if ( $constants->last_message !== null ) {
             break;
         case 'spo_route':
             require_once 'actions/spo_route.php';
+            break;
+        case 'send_all':
+            require_once 'actions/send_to_all.php';
             break;
         default:
             echo "wrong";
