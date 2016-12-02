@@ -64,7 +64,8 @@ if ($constants->last_message === null) {
                       'زمان پیشبینی شده: ' . '<code>' . $duration . '</code>' . "\n" .
                       'مبدا: '             . '<code>' . $start    . '</code>' . "\n" .
                       "\n\n" .
-                      'مسیر پیشنهادی: ' . $steps,
+                      'مسیر پیشنهادی: ' . $steps .
+                      'در نقشه های گوگل : '. "<a href='https://www.google.com/maps/dir/36.341056,59.529520/$data->latitude,$data->longitude'>اطلاعات بیشتر</a>",
             'parse_mode' => 'HTML',
             'reply_markup' => $keyboard->key_start()
         ]);
@@ -123,7 +124,8 @@ elseif (
                       'زمان پیشبینی شده: ' . '<code>' . $duration . '</code>' . "\n" .
                       'مبدا: '             . '<code>' . $start    . '</code>' . "\n" .
                       "\n\n" .
-                      'مسیر پیشنهادی: ' . $steps,
+                      'مسیر پیشنهادی: ' . $steps .
+                      'در نقشه های گوگل : '. "<a href='https://www.google.com/maps/dir/36.331729,59.509248/$data->latitude,$data->longitude'>اطلاعات بیشتر</a>",
             'parse_mode' => 'HTML',
             'reply_markup' => $keyboard->key_start()
         ]);
