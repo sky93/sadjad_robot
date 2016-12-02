@@ -20,9 +20,6 @@ if ( $constants->last_message !== null ) {
         case 'stu_plan':
             require_once 'actions/user_profile.php';
             break;
-        case 'contact_us':
-            require_once 'actions/contact_us.php';
-            break;
         case 'internet_credit':
             require_once 'actions/internet_credit.php';
             break;
