@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/../autoload.php';
 function is_week_even()
 {
     date_default_timezone_set('Asia/Tehran');
-    $startDate = '2016-09-22';
+    $startDate = '2016-09-27';
     $endDate = date("Y/m/d");
     $date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($startDate)));
     $total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) + $endDate - $startDate - 1;
@@ -181,7 +181,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
             $odd_even = ! is_week_even() ? 'even' : 'odd';
             $out .= is_week_even() ? ' درضمن هفته‌ی بعد، هفته‌ی `فرد` خواهد بود.' : ' درضمن هفته‌ی بعد، هفته‌ی `زوج` خواهد بود.';
         } else {
-            $out = 'برنامه‌ی این هفته‌ی شما';
+            $out = 'برنامه‌ی این هفته‌ی شما.';
             $odd_even = is_week_even() ? 'even' : 'odd';
             $out .= is_week_even() ? ' درضمن این هفته، هفته‌ی `زوج` است.' : ' درضمن این هفته، هفته‌ی `فرد` است.';
         }
