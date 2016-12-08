@@ -4,6 +4,7 @@ class keyboard
     public $buttons = [
         'self_service' => '🍗 سیستم تغذیه من',
         'student_schedule' => '📒 برنامه درسی من',
+        'profile' => '😎 پروفایل دانشجویی من',
         'class_places' => '👣 مکان کلاس من',
         'week'         => '❓ هفته زوج یا فرد!',
         'calender'     => '📅 تقویم آموزشی',
@@ -23,6 +24,7 @@ class keyboard
         'self_service_credit'       => '💴 موجودی حساب من',
         'acm_news'     => '⌨ اخبار مسابقه‌ی acm',
         'all_news'     => '📻 تمامی خبرها',
+        'student_exams'     => '🚀 برنامه امتحانی من',
     ];
 
     public function key_start()
@@ -30,10 +32,11 @@ class keyboard
         return  '{
                    "keyboard": [
                                  [
-                                     "' . $this->buttons['student_schedule'] . '"
+                                     "' . $this->buttons['profile'] . '"
                                  ],
                                  [
-                                    "' . $this->buttons['week'] . '"
+                                    "' . $this->buttons['week'] . '",
+                                    "' . $this->buttons['calender'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['location'] . '"
@@ -70,6 +73,26 @@ class keyboard
                                }
                 }';
     }
+
+    public function iprofile()
+    {
+        return  '{
+                   "keyboard": [
+                                 [
+                                     "' . $this->buttons['student_schedule'] . '",
+                                     "' . $this->buttons['student_exams'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['go_back'] . '"
+                                 ]
+                               ],
+                               "resize_keyboard" : true,
+                               "ForceReply":{
+                                   "force_reply" : true
+                               }
+                }';
+    }
+
 
     public function news()
     {
