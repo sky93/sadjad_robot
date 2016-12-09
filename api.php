@@ -46,6 +46,7 @@ if ($constants->last_message !== null && $data->text != '/start') {
             require_once 'actions/start.php';
             break;
         case $keyboard->buttons['library']:
+        case '📚 کتابخانه من':                                                 // Backward compatibility
             require_once 'actions/library/library.php';
             break;
         case '😎 پروفایل دانشجویی من':                                         // Backward compatibility

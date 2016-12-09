@@ -10,60 +10,63 @@ if ( $data->text == $keyboard->buttons['go_back']) {
         'reply_markup' => $keyboard->key_start()
     ]);
 
-} elseif ( $data->text == $keyboard->buttons['student_books'] &&
-    $constants->user('book_username') === null &&
-    $constants->user('book_password') === null
+} elseif ( ($data->text == $keyboard->buttons['library'] || $data->text == '😎 پروفایل دانشجویی من') &&
+    $constants->user('library_username') === null &&
+    $constants->user('library_password') === null
 ) {
 
-    $database->update("users", ['last_query' => 'student_books'], ['id' => $data->user_id]);
+    $database->update("users", ['last_query' => 'library'], ['id' => $data->user_id]);
     $content = [
         'chat_id' => $data->chat_id,
         'parse_mode' => 'Markdown',
-        'text' => "برای نمایش کتاب های امانت گرفته شده از کتابخانه دانشگاه شما نیاز به نام کاربری و رمز عبور سیستم کتابخانه شما دارم. (اطلاعات شما ذخیره نخواهد شد)" . "\n\n" . '🔺 ' . "   نام کاربری خود را وارد نمایید:",
+        'text' =>
+            "برای نمایش کتاب‌های امانت گرفته شده از کتابخانه دانشگاه شما نیاز به نام کاربری و رمز عبور سیستم کتابخانه شما دارم. به طور پیشفرض نام کاربری و رمزعبور، شماره‌ی دانشجویی شما می‌باشد.(اطلاعات شما ذخیره نخواهد شد)" . "\n\n" .
+            '🔺 ' . "   نام کاربری خود را وارد نمایید:",
         'reply_markup' => $keyboard->go_back()
     ];
     $telegram->sendMessage($content);
 
-} elseif ( $data->text != $keyboard->buttons['student_books'] &&
-    $constants->user('book_username') === null &&
-    $constants->user('book_password') === null
+} elseif ( $data->text != $keyboard->buttons['library'] &&
+    $constants->user('library_username') === null &&
+    $constants->user('library_password') === null
 ) {
-    $database->update("users", [
-        'last_query' => 'student_books',
-        'book_username' => $data->text
+
+    $database->update('users', [
+        'last_query' => 'library',
+        'library_username' => $data->text
     ], ['id' => $data->user_id]);
     $content = [
         'chat_id' => $data->chat_id,
         'parse_mode' => 'Markdown',
-        'text' => '🔺' . "نام کاربری شما: " . "`" . $data->text . "`" . "\n\n" . "رمز عبور سیستم کتابخانه خود را وارد نمایید:",
+        'text' => '🔺' . "نام کاربری شما: " . "`" . $data->text . "`" . "\n\n" . "رمز عبور سیستم کتابخانه خود را وارد نمایید: (به طور پیشفرض شماره دانشجویی شما می‌باشد)",
         'reply_markup' => $keyboard->go_back()
     ];
     $telegram->sendMessage($content);
 
-} elseif ( $data->text == $keyboard->buttons['student_books'] &&
-    $constants->user('book_username') !== null &&
-    $constants->user('book_password') === null
+} elseif ( ($data->text == $keyboard->buttons['library'] || $data->text == '😎 پروفایل دانشجویی من') &&
+    $constants->user('library_username') !== null &&
+    $constants->user('library_password') === null
 ) {
     $content = [
         'chat_id' => $data->chat_id,
         'parse_mode' => 'Markdown',
-        'text' => '🔺' . "نام کاربری : " . "`" . $constants->user('book_username') . "`" . "\n\n" .  "رمز عبور سیستم کتابخانه خود را وارد نمایید:",
+        'text' => '🔺' . "نام کاربری : " . "`" . $constants->user('library_username') . "`" . "\n\n" .  "رمز عبور سیستم کتابخانه خود را وارد نمایید:",
         'reply_markup' => $keyboard->go_back()
     ];
     $telegram->sendMessage($content);
 
-} elseif ( $data->text != $keyboard->buttons['student_books'] &&
-    $constants->user('book_username') !== null &&
-    $constants->user('book_password') === null
+} elseif ( $data->text != $keyboard->buttons['library'] &&
+    $constants->user('library_username') !== null &&
+    $constants->user('library_password') === null
 ) {
 
     $database->update("users", [
-        'last_query' => 'student_books',
-        'book_password' => $data->text
+        'last_query' => 'library',
+        'library_password' => $data->text
     ], ['id' => $data->user_id]);
 
     $login = [
-        'username' => $constants->user('book_username'),
+        'username' => $constants->user('library_username'),
         'password' => $data->text
     ];
 
@@ -74,8 +77,8 @@ if ( $data->text == $keyboard->buttons['go_back']) {
 
         $out = '';
         foreach($json->data as $item) {
-            $out .= '✅ نام کتاب: ' . $item->title . '\n';
-            $out .= '👤  نویسنده:  ' . $item->author . '\n';
+            $out .= '✅ نام کتاب: ' . $item->title . "\n";
+            $out .= '👤  نویسنده:  ' . $item->author . "\n";
             $out .= '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
             $out .= '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
             $out .= '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
@@ -91,9 +94,9 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     } else {
 
         $database->update("users", [
-            'last_query' => 'student_books',
-            'book_username' => null,
-            'book_password' => null,
+            'last_query' => 'library',
+            'library_username' => null,
+            'library_password' => null,
         ], ['id' => $data->user_id]);
         $content = [
             'chat_id' => $data->chat_id,
@@ -123,8 +126,8 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     $database->update("users", [
         'last_query' => null,
         'last_request' => null,
-        'book_username' => null,
-        'book_password' => null,
+        'library_username' => null,
+        'library_password' => null,
     ], ['id' => $data->user_id]);
     $telegram->sendMessage([
         'chat_id' => $data->chat_id,
@@ -133,14 +136,14 @@ if ( $data->text == $keyboard->buttons['go_back']) {
         'reply_markup' => $keyboard->key_start()
     ]);
 
-} elseif ( $data->text == $keyboard->buttons['student_books'] &&
-    $constants->user('book_username') !== null &&
-    $constants->user('book_password') !== null
+} elseif ( $data->text == $keyboard->buttons['library'] &&
+    $constants->user('library_username') !== null &&
+    $constants->user('library_password') !== null
 ) {
 
     $login = [
-        'username' => $constants->user('book_username'),
-        'password' => $constants->user('book_password')
+        'username' => $constants->user('library_username'),
+        'password' => $constants->user('library_password')
     ];
       
     $all = file_get_contents('https://api.sadjad.ac.ir/v1/library?' . http_build_query($login));
@@ -150,8 +153,8 @@ if ( $data->text == $keyboard->buttons['go_back']) {
 
         $out = '';
         foreach($json->data as $item) {
-            $out .=  '✅ نام کتاب: ' . $item->title . '\n';
-            $out .=  '👤  نویسنده:  ' . $item->author . '\n';
+            $out .=  '✅ نام کتاب: ' . $item->title . "\n";
+            $out .=  '👤  نویسنده:  ' . $item->author . "\n";
             $out .=  '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
             $out .=  '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
             $out .=  '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
@@ -165,9 +168,9 @@ if ( $data->text == $keyboard->buttons['go_back']) {
         $telegram->sendMessage($content);
     } else {
         $database->update("users", [
-            'last_query' => 'student_books',
-            'book_username' => null,
-            'book_password' => null,
+            'last_query' => 'library',
+            'library_username' => null,
+            'library_password' => null,
         ], ['id' => $data->user_id]);
         $content = [
             'chat_id' => $data->chat_id,
