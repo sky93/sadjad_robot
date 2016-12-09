@@ -2,38 +2,39 @@
 class keyboard
 {
     public $buttons = [
-        'self_service' => '🍗 سیستم تغذیه من',
-        'student_schedule' => '📒 برنامه درسی من',
-        'student_books' => '📚 کتابخانه من',
-        'profile' => '😎 پروفایل دانشجویی من',
-        'class_places' => '👣 مکان کلاس من',
-        'week'         => '❓ هفته زوج یا فرد!',
-        'calender'     => '📅 تقویم آموزشی',
-        'location_to_university'     => '🏢📍 مکان فعلی من تا دانشگاه',
-        'location_to_sport'     => '⚽️📍 مکان فعلی من تا سالن تربیت بدنی',
-        'location'     => '📍 مسیریابی ها',
-        'map_spo'      => '📍 مسیریابی تا سالن',
-        'send_my_current_location' => '🌇 ارسال مکان کنونی من',
-        'cancel_news'  => '😱 اخبار لغو کلاس ها',
-        'news'         => '🗞 آخرین خبرهای دانشگاه',
-        'internet'     => '📡 حجم اینترنت من',
-        'contact_us'   => '✍ تماس با ما',
-        'go_back'      => '➡️ بازگشت',
-        'save'         => '✅ ذخیره کن',
-        'dont_save'    => '❌ ذخیره نکن',
-        'self_service_this_week'    => '🍖 منوی این هفته',
-        'self_service_credit'       => '💴 موجودی حساب من',
-        'acm_news'     => '⌨ اخبار مسابقه‌ی acm',
-        'all_news'     => '📻 تمامی خبرها',
-        'student_exams'     => '🚀 برنامه امتحانی من',
+        'self_service'                  => '🍗 سیستم تغذیه من',
+        'student_schedule'              => '📒 برنامه درسی من',
+        'student_books'                 => '📚 کتابخانه من',
+        'my_profile'                    => '🖋 پروفایل دانشجویی من',
+        'class_places'                  => '👣 مکان کلاس من',
+        'week'                          => '❓ هفته زوج یا فرد!',
+        'calender'                      => '📅 تقویم آموزشی',
+        'location_to_university'        => '🏢📍 مکان فعلی من تا دانشگاه',
+        'location_to_sport'             => '⚽️📍 مکان فعلی من تا سالن تربیت بدنی',
+        'location'                      => '📍 مسیریابی ها',
+        'map_spo'                       => '📍 مسیریابی تا سالن',
+        'send_my_current_location'      => '🌇 ارسال مکان کنونی من',
+        'cancel_news'                   => '😱 اخبار لغو کلاس ها',
+        'news'                          => '🗞 آخرین خبرهای دانشگاه',
+        'internet'                      => '📡 حجم اینترنت من',
+        'contact_us'                    => '✍ تماس با ما',
+        'go_back'                       => '➡️ بازگشت',
+        'save'                          => '✅ ذخیره کن',
+        'dont_save'                     => '❌ ذخیره نکن',
+        'self_service_this_week'        => '🍖 منوی این هفته',
+        'self_service_credit'           => '💴 موجودی حساب من',
+        'acm_news'                      => '⌨ اخبار مسابقه‌ی acm',
+        'all_news'                      => '📻 تمامی خبرها',
+        'student_exams'                 => '🚀 برنامه امتحانی من',
     ];
+
 
     public function key_start()
     {
         return  '{
                    "keyboard": [
                                  [
-                                     "' . $this->buttons['profile'] . '"
+                                     "' . $this->buttons['my_profile'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['week'] . '",
@@ -63,6 +64,7 @@ class keyboard
                 }';
     }
 
+
     public function go_back()
     {
         return  '{
@@ -78,7 +80,8 @@ class keyboard
                 }';
     }
 
-    public function iprofile()
+
+    public function my_profile()
     {
         return  '{
                    "keyboard": [
@@ -122,6 +125,7 @@ class keyboard
                 }';
     }
 
+
     public function save_dont_save()
     {
         return  '{
@@ -137,6 +141,7 @@ class keyboard
                                }
                 }';
     }
+
 
     public function self_service_main()
     {
@@ -156,6 +161,7 @@ class keyboard
                                }
                 }';
     }
+
 
     public function location_list()
     {
@@ -177,6 +183,7 @@ class keyboard
                                }
                 }';
     }
+
 
     public function send_my_current_location()
     {
@@ -200,4 +207,3 @@ class keyboard
                 }';
     }
 }
-
