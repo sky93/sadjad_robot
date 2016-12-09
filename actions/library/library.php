@@ -74,14 +74,18 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     $json = json_decode($all);
     
     if ( $json->meta->message == 'OK' ) {
-
+        
         $out = '';
-        foreach($json->data as $item) {
-            $out .= '✅ نام کتاب: ' . $item->title . "\n";
-            $out .= '👤  نویسنده:  ' . $item->author . "\n";
-            $out .= '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
-            $out .= '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
-            $out .= '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
+        if ($json->data) {
+            foreach ($json->data as $item) {
+                $out .= '✅ نام کتاب: ' . $item->title . "\n";
+                $out .= '👤  نویسنده:  ' . $item->author . "\n";
+                $out .= '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
+                $out .= '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
+                $out .= '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
+            }
+        } else {
+            $out = 'شما کتابی رزرو نکرده‌اید!';
         }
         $content = [
             'chat_id' => $data->chat_id,
@@ -152,12 +156,16 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     if ( $json->meta->message == 'OK' ) {
 
         $out = '';
-        foreach($json->data as $item) {
-            $out .=  '✅ نام کتاب: ' . $item->title . "\n";
-            $out .=  '👤  نویسنده:  ' . $item->author . "\n";
-            $out .=  '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
-            $out .=  '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
-            $out .=  '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
+        if ($json->data) {
+            foreach ($json->data as $item) {
+                $out .= '✅ نام کتاب: ' . $item->title . "\n";
+                $out .= '👤  نویسنده:  ' . $item->author . "\n";
+                $out .= '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
+                $out .= '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
+                $out .= '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
+            }
+        } else {
+            $out = 'شما کتابی رزرو نکرده‌اید!';
         }
         $content = [
             'chat_id' => $data->chat_id,
