@@ -19,14 +19,8 @@ if ($constants->last_message !== null && $data->text != '/start') {
         case 'contact_us':
             require_once 'actions/contact_us.php';
             break;
-        case 'student_schedule':
-            require_once 'actions/student_schedule.php';
-            break;
         case 'student_books':
             require_once 'actions/student_books.php';
-            break;
-        case 'student_exams':
-            require_once 'actions/student_exams.php';
             break;
         case 'internet_credit':
             require_once 'actions/internet_credit.php';
@@ -50,12 +44,6 @@ if ($constants->last_message !== null && $data->text != '/start') {
         case '/start':
             require_once 'actions/start.php';
             break;
-        case $keyboard->buttons['student_schedule']:
-            require_once 'actions/student_schedule.php';
-            break;
-        case $keyboard->buttons['student_exams']:
-            require_once 'actions/student_exams.php';
-            break;
         case $keyboard->buttons['student_books']:
             require_once 'actions/student_books.php';
             break;
@@ -64,7 +52,7 @@ if ($constants->last_message !== null && $data->text != '/start') {
             require_once 'actions/my_profile/my_profile.php';
             break;
         case $keyboard->buttons['calender']:
-            require_once 'actions/calender.php';
+            require_once 'actions/calender/calender.php';
             break;
         case $keyboard->buttons['contact_us']:
             require_once 'actions/contact_us.php';
