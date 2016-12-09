@@ -33,7 +33,7 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
 ) {
     // We need to know last_request. So we can call the proper action when the user entered username and their password
     $database->update("users", ['last_request' => $data->text], ['id' => $data->user_id]);
-    require_once dirname(__FILE__) . 'login.php';                       // User login process
+    require_once dirname(__FILE__) . '/login.php';                       // User login process
 
 } elseif (                                                              // User entered something rather than menu,
     $constants->user('stu_username') === null ||                        // sub-menu or back button. Also either
@@ -41,7 +41,7 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
 ) {                                                                     // so they definitely entered either username
     // or password. So we'll redirect them to login
     $this_is_username_or_password = true;                               // section again.
-    require_once dirname(__FILE__) . 'login.php';
+    require_once dirname(__FILE__) . '/login.php';
 
 // Finally we're sure we have both username and also password so we can safely call our sub-menu that requires
 // authentication.
@@ -53,13 +53,13 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
     // We could use only one if statement but for the sake of bot's modularity we decided to put this in a separate if statement
     switch ($data->text) {
         case $keyboard->buttons['student_schedule']:
-            require_once dirname(__FILE__) . 'sub-menu/schedule.php';
+            require_once dirname(__FILE__) . '/sub-menu/schedule.php';
             break;
         case $keyboard->buttons['student_exams']:
-            require_once dirname(__FILE__) . 'sub-menu/exams.php';
+            require_once dirname(__FILE__) . '/sub-menu/exams.php';
             break;
         default:                                                          // We have no idea what user entered. So we're
-            require_once dirname(__FILE__) . '../../actions/start.php';   // gonna show them the start menu.
+            require_once dirname(__FILE__) . '/../../actions/start.php';   // gonna show them the start menu.
             break;
     }
 
@@ -100,4 +100,7 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
         'reply_markup' => $keyboard->key_start()
     ]);
 
+// Something weird happened. We're gonna show the user start menu.
+} else {
+    require_once dirname(__FILE__) . '/../start.php';
 }

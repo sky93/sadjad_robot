@@ -3,7 +3,7 @@
 // So we're sure either their stu_username or stu_password is null.
 // We also sure that last_query is my_profile and last_request is not null too.
 
-require_once dirname(__FILE__) . '../../autoload.php';
+require_once dirname(__FILE__) . '/../../autoload.php';
 
 // We're sure this is not either username or password. So we're gonna ask the user to enter their credential information
 if (
@@ -44,7 +44,7 @@ if (
             'reply_markup' => $keyboard->go_back()
         ]);
 
-    // Now we're sure it's user's password. We'll update database and we're done here in this module!
+        // Now we're sure it's user's password. We'll update database and we're done here in this module!
     } else {
 
         $database->update('users', [
@@ -65,13 +65,13 @@ if (
 
         switch ($constants->user('last_request')) {
             case $keyboard->buttons['student_schedule']:
-                require_once dirname(__FILE__) . 'sub-menu/schedule.php';
+                require_once dirname(__FILE__) . '/sub-menu/schedule.php';
                 break;
             case $keyboard->buttons['student_exams']:
-                require_once dirname(__FILE__) . 'sub-menu/exams.php';
+                require_once dirname(__FILE__) . '/sub-menu/exams.php';
                 break;
             default:                                                          // We have no idea what user entered. So we're
-                require_once dirname(__FILE__) . '../../actions/start.php';   // gonna show them the start menu.
+                require_once dirname(__FILE__) . '/../../actions/start.php';   // gonna show them the start menu.
                 break;
         }
 

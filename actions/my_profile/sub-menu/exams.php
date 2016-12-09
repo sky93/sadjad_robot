@@ -4,23 +4,6 @@
 
 require_once dirname(__FILE__) . '/../../../autoload.php';
 
-/**
- *  Checks if current week is even or odd
- *
- * @return int  if current week is even it return 1 (true) otherwise it returns 0 (false)
- */
-function is_week_even()
-{
-    date_default_timezone_set('Asia/Tehran');
-    $startDate = '2016-09-17';
-    $endDate = date("Y/m/d");
-    $startDateWeekCnt = round(floor( date('d',strtotime($startDate)) / 7)) ;
-    $endDateWeekCnt = round(floor( date('d',strtotime($endDate)) / 7)) ;
-    $date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($startDate)));
-    $total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) + $endDateWeekCnt - $startDateWeekCnt;
-    return $total_no_OfWeek % 2 ? 0 : 1;
-}
-
 // If this file is being called by login.php file, then we already have $login variable. So we don't need to get
 // information from database.
 if ( ! isset($login) ) {
@@ -31,16 +14,16 @@ if ( ! isset($login) ) {
 }
 
 // Sadjad university of Technology official API system
-$all = file_get_contents('https://api.sadjad.ac.ir/v1/student_schedule?' . http_build_query($login));
+$all = file_get_contents('https://api.sadjad.ac.ir/v1/exams?' . http_build_query($login));
 $json = json_decode($all);
 
 if ( $json->meta->message == 'OK' ) {
 
     $out = '';
     foreach($json->data as $item) {
-        $out .=  '✅ نام درس : ' . '`' . $item->course . '`' . "\n";
-        $out .=  '👤  استاد :  ' . '`' . $item->teacher . '`' . "\n";
-        $out .=  '🕙 تاریخ برگزاری امتحان : ' . '`' . 'روز ' .  $item->day . '`' . "\n\n";
+        $out .=  '✅ نام درس: ' . '`' . $item->course . '`' . "\n";
+        $out .=  '👤  استاد:  ' . '`' . $item->teacher . '`' . "\n";
+        $out .=  '🕙 تاریخ برگزاری امتحان: ' . '`' . 'روز ' .  $item->day . '`' . "\n\n";
     }
 
     // By now we have our desired content. Now we check if bot has saved password or not.
@@ -52,6 +35,8 @@ if ( $json->meta->message == 'OK' ) {
             'reply_markup' => $keyboard->save_dont_save()
         ];
     } else {
+        // Reset last query. So user will see the main menu. We're done!
+        $database->update("users", ['last_query' => null, 'last_request' => null], ['id' => $data->user_id]);
         $content = [
             'chat_id' => $data->chat_id,
             'parse_mode' => 'Markdown',

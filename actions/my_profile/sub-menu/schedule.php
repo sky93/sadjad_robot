@@ -76,6 +76,8 @@ if ( $json->meta->message == 'OK' ) {
             'reply_markup' => $keyboard->save_dont_save()
         ];
     } else {
+        // Reset last query. So user will see the main menu. We're done!
+        $database->update("users", ['last_query' => null, 'last_request' => null], ['id' => $data->user_id]);
         $content = [
             'chat_id' => $data->chat_id,
             'parse_mode' => 'Markdown',
