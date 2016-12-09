@@ -5,11 +5,10 @@ config/config.php
 
 # Folder config file
 Desktop.ini
-
+test/
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-telegram.txt
 .idea/
 # Windows Installer files
 *.cab
