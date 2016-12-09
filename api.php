@@ -17,7 +17,7 @@ if ($constants->last_message !== null && $data->text != '/start') {
             require_once 'actions/news.php';
             break;
         case 'contact_us':
-            require_once 'actions/contact_us.php';
+            require_once 'actions/contact_us/contact_us.php';
             break;
         case 'student_books':
             require_once 'actions/student_books.php';
@@ -55,7 +55,7 @@ if ($constants->last_message !== null && $data->text != '/start') {
             require_once 'actions/calender/calender.php';
             break;
         case $keyboard->buttons['contact_us']:
-            require_once 'actions/contact_us.php';
+            require_once 'actions/contact_us/contact_us.php';
             break;
         case $keyboard->buttons['news']:
             require_once 'actions/news.php';
