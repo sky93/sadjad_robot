@@ -37,6 +37,9 @@ if ($constants->last_message !== null && $data->text != '/start') {
         case 'location':
             require_once 'actions/location.php';
             break;
+        case 'my_profile':
+            require_once 'actions/my_profile/my_profile.php';
+            break;
         default:
             require_once 'actions/start.php';
             break;
