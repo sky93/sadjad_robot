@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '../../autoload.php';
+require_once dirname(__FILE__) . '/../../autoload.php';
 
 if ( $data->text == $keyboard->buttons['go_back'] ) {
 
@@ -99,5 +99,5 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
         'text' => 'اطلاعات سیستم دانشجویی شما در سیستم ذخیره نخواهد شد.',
         'reply_markup' => $keyboard->key_start()
     ]);
-    
+
 }
