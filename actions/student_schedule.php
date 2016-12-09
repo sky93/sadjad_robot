@@ -7,7 +7,7 @@ function is_week_even()
     $startDate = '2016-09-17';
     $endDate = date("Y/m/d");
     $startDateWeekCnt = round(floor( date('d',strtotime($startDate)) / 7)) ;
-    $endDateWeekCnt = round(ceil( date('d',strtotime($endDate)) / 7)) ;
+    $endDateWeekCnt = round(floor( date('d',strtotime($endDate)) / 7)) ;
     $date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($startDate)));
     $total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) + $endDateWeekCnt - $startDateWeekCnt;
     return $total_no_OfWeek % 2 ? 0 : 1;
@@ -36,7 +36,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     ];
     $telegram->sendMessage($content);
 
-} elseif ( $data->text != $keyboard->buttons['user_profile'] &&
+} elseif ( $data->text != $keyboard->buttons['student_schedule'] &&
     $constants->user('stu_username') === null &&
     $constants->user('stu_password') === null
 ) {
@@ -52,7 +52,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     ];
     $telegram->sendMessage($content);
 
-} elseif ( $data->text == $keyboard->buttons['user_profile'] &&
+} elseif ( $data->text == $keyboard->buttons['student_schedule'] &&
     $constants->user('stu_username') !== null &&
     $constants->user('stu_password') === null
 ) {
@@ -64,7 +64,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     ];
     $telegram->sendMessage($content);
 
-} elseif ( $data->text != $keyboard->buttons['user_profile'] &&
+} elseif ( $data->text != $keyboard->buttons['student_schedule'] &&
     $constants->user('stu_username') !== null &&
     $constants->user('stu_password') === null
 ) {

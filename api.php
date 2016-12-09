@@ -23,7 +23,7 @@ $database->insert("logs", [
 //$current .= date ("Y-m-d H:i:s", time()) . ":\n" . json_encode(json_decode(file_get_contents('php://input')), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
 //file_put_contents($file, $current);
 
-// if ($data->user_id == '96253493' || $data->user_id == '93267971') {
+if ($data->user_id == '96253493' || $data->user_id == '93267971') {
 
 if ($constants->last_message !== null && $data->text != '/start') {
 
@@ -36,6 +36,9 @@ if ($constants->last_message !== null && $data->text != '/start') {
             break;
         case 'student_schedule':
             require_once 'actions/student_schedule.php';
+            break;
+        case 'student_books':
+            require_once 'actions/student_books.php';
             break;
         case 'student_exams':
             require_once 'actions/student_exams.php';
@@ -72,6 +75,9 @@ if ($constants->last_message !== null && $data->text != '/start') {
         case $keyboard->buttons['student_exams']:
             require_once 'actions/student_exams.php';
             break;
+        case $keyboard->buttons['student_books']:
+            require_once 'actions/student_books.php';
+            break;
         case $keyboard->buttons['profile']:
             require_once 'actions/iprofile.php';
             break;
@@ -101,12 +107,16 @@ if ($constants->last_message !== null && $data->text != '/start') {
             break;
     }
 }
-// }
-// else{
-//    $telegram->sendPhoto([
-//        'chat_id' => $data->chat_id,
-//        'photo'=> "AgADBAADlrQxGzW2vAWsPhk7KmkQxZZcaRkABIsU1hv_MAuHVSMCAAEC",
-//        'caption' => 'در حال افزودن برنامه امتحانی به بات هستیم . تا ساعت 20 بات در دسترس نمیباشد . . . ',
 
-//    ]);
-// }
+
+
+
+}
+else{
+   $telegram->sendPhoto([
+       'chat_id' => $data->chat_id,
+       'photo'=> "AgADBAADlrQxGzW2vAWsPhk7KmkQxZZcaRkABIsU1hv_MAuHVSMCAAEC",
+       'caption' => 'در حال افزودن سیستم کتابخانه به بات هستیم . تا ساعت 19 بات در دسترس نمیباشد . . . ',
+
+   ]);
+}

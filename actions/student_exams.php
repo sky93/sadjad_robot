@@ -76,7 +76,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
         foreach($json->data as $item) {
             $out .=  "✅ نام درس : `" . $item->course . "`\n";
             $out .=  "👤  استاد :  `" . $item->teacher . "`\n";
-            $out .=  "🕙 تاریخ برگزاری امتحان : `" .  $date->date("y/m/d",strtotime($item->formatted_date)) . "`\n\n";
+            $out .=  "🕙 تاریخ برگزاری امتحان : `" . "روز " .  $item->day . "`\n\n";
         }
         $content = [
             'chat_id' => $data->chat_id,
@@ -138,7 +138,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
         'username' => $constants->user('stu_username'),
         'password' => $constants->user('stu_password')
     ];
-
+      
     $all = file_get_contents('https://sephr.me/v1/exams?' . http_build_query($login));
     $json = json_decode($all);
 
@@ -146,7 +146,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
         foreach($json->data as $item) {
             $out .=  "✅ نام درس : `" . $item->course . "`\n";
             $out .=  "👤  استاد :  `" . $item->teacher . "`\n";
-            $out .=  "🕙 تاریخ برگزاری امتحان : `" . $date->date("y/m/d",strtotime($item->formatted_date)) . "`\n\n";
+            $out .=  "🕙 تاریخ برگزاری امتحان : `" . "روز " .  $item->day . "`\n\n";
         }
         $content = [
             'chat_id' => $data->chat_id,

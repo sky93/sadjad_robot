@@ -6,7 +6,7 @@ $startDate = '2016-09-17';
 $endDate = date("Y-m-d");
 
 $startDateWeekCnt = round(floor( date('d',strtotime($startDate)) / 7)) ;
-$endDateWeekCnt = round(ceil( date('d',strtotime($endDate)) / 7)) ;
+$endDateWeekCnt = round(floor( date('d',strtotime($endDate)) / 7)) ;
 
 $letter = [
     'صفرم!',
