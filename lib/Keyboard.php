@@ -40,13 +40,13 @@ class keyboard
                                     "' . $this->buttons['calender'] . '"
                                  ],
                                  [
+                                    "' . $this->buttons['student_books'] . '"
+                                 ],
+                                 [
                                     "' . $this->buttons['location'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['news'] . '"
-                                 ],
-                                 [
-                                    "' . $this->buttons['student_books'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['internet'] . '",
