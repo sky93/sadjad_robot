@@ -10,21 +10,6 @@ $database->insert("users", [
     'date_created' => date("Y-m-d H:i:s")
 ]);
 
-$database->insert("logs", [
-    "user_id" => $data->user_id,
-    "text" => $data->text,
-    "content" => json_encode(json_decode(file_get_contents('php://input')), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
-    'date' => date("Y-m-d H:i:s")
-]);
-
-//// for log of server of texts
-//$file = 'telegram.txt';
-//$current = file_get_contents($file);
-//$current .= date ("Y-m-d H:i:s", time()) . ":\n" . json_encode(json_decode(file_get_contents('php://input')), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
-//file_put_contents($file, $current);
-
-if ($data->user_id == '96253493' || $data->user_id == '93267971') {
-
 if ($constants->last_message !== null && $data->text != '/start') {
 
     switch ($constants->last_message) {
@@ -52,22 +37,15 @@ if ($constants->last_message !== null && $data->text != '/start') {
         case 'location':
             require_once 'actions/location.php';
             break;
-        case 'send_all':
-            require_once 'actions/send_to_all.php';
-            break;
         default:
             require_once 'actions/start.php';
             break;
     }
 
 } else {
-
     switch ($data->text) {
         case '/start':
             require_once 'actions/start.php';
-            break;
-        case 'ارسال به همه':
-            require_once 'actions/sendtoall.php';
             break;
         case $keyboard->buttons['student_schedule']:
             require_once 'actions/student_schedule.php';
@@ -78,8 +56,9 @@ if ($constants->last_message !== null && $data->text != '/start') {
         case $keyboard->buttons['student_books']:
             require_once 'actions/student_books.php';
             break;
-        case $keyboard->buttons['profile']:
-            require_once 'actions/iprofile.php';
+        case '😎 پروفایل دانشجویی من':                                         // Backward compatibility
+        case $keyboard->buttons['my_profile']:
+            require_once 'actions/my_profile/my_profile.php';
             break;
         case $keyboard->buttons['calender']:
             require_once 'actions/calender.php';
@@ -106,17 +85,4 @@ if ($constants->last_message !== null && $data->text != '/start') {
             require_once 'actions/start.php';
             break;
     }
-}
-
-
-
-
-}
-else{
-   $telegram->sendPhoto([
-       'chat_id' => $data->chat_id,
-       'photo'=> "AgADBAADlrQxGzW2vAWsPhk7KmkQxZZcaRkABIsU1hv_MAuHVSMCAAEC",
-       'caption' => 'در حال افزودن سیستم کتابخانه به بات هستیم . تا ساعت 19 بات در دسترس نمیباشد . . . ',
-
-   ]);
 }
