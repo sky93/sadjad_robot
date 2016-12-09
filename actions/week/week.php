@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../autoload.php';
+require_once dirname(__FILE__) . '/../../autoload.php';
 
 date_default_timezone_set('Asia/Tehran');
 $startDate = '2016-09-17';

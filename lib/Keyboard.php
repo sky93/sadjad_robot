@@ -4,7 +4,7 @@ class keyboard
     public $buttons = [
         'self_service'                  => '🍗 سیستم تغذیه من',
         'student_schedule'              => '📒 برنامه درسی من',
-        'student_books'                 => '📚 کتابخانه من',
+        'library'                       => '📚 کتابخانه من',
         'my_profile'                    => '🖋 پروفایل دانشجویی من',
         'class_places'                  => '👣 مکان کلاس من',
         'week'                          => '❓ هفته زوج یا فرد!',
@@ -41,7 +41,7 @@ class keyboard
                                     "' . $this->buttons['calender'] . '"
                                  ],
                                  [
-                                    "' . $this->buttons['student_books'] . '"
+                                    "' . $this->buttons['library'] . '"
                                  ],
                                  [
                                     "' . $this->buttons['location'] . '"

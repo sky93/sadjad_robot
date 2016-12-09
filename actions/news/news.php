@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__) . '/../autoload.php';
-require_once dirname(__FILE__) . '/../lib/jdatetime.class.php';
+require_once dirname(__FILE__) . '/../../autoload.php';
+require_once dirname(__FILE__) . '/../../lib/jdatetime.class.php';
 
 $date = new jDateTime(true, true, 'Asia/Tehran');
 

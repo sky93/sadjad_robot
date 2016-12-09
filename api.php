@@ -14,26 +14,27 @@ if ($constants->last_message !== null && $data->text != '/start') {
 
     switch ($constants->last_message) {
         case 'news':
-            require_once 'actions/news.php';
+            require_once 'actions/news/news.php';
             break;
         case 'contact_us':
             require_once 'actions/contact_us/contact_us.php';
             break;
-        case 'student_books':
-            require_once 'actions/student_books.php';
+        case 'library':
+            require_once 'actions/library/library.php';
             break;
         case 'internet_credit':
-            require_once 'actions/internet_credit.php';
+            require_once 'actions/internet_credit/internet_credit.php';
             break;
         case 'self_service':
-            require_once 'actions/self_service.php';
+            require_once 'actions/self_service/self_service.php';
             break;
         case 'location':
-            require_once 'actions/location.php';
+            require_once 'actions/location/location.php';
             break;
         case 'my_profile':
             require_once 'actions/my_profile/my_profile.php';
             break;
+        // If everything fails, we're gonna show the user start menu
         default:
             require_once 'actions/start.php';
             break;
@@ -44,8 +45,8 @@ if ($constants->last_message !== null && $data->text != '/start') {
         case '/start':
             require_once 'actions/start.php';
             break;
-        case $keyboard->buttons['student_books']:
-            require_once 'actions/student_books.php';
+        case $keyboard->buttons['library']:
+            require_once 'actions/library/library.php';
             break;
         case '😎 پروفایل دانشجویی من':                                         // Backward compatibility
         case $keyboard->buttons['my_profile']:
@@ -58,19 +59,19 @@ if ($constants->last_message !== null && $data->text != '/start') {
             require_once 'actions/contact_us/contact_us.php';
             break;
         case $keyboard->buttons['news']:
-            require_once 'actions/news.php';
+            require_once 'actions/news/news.php';
             break;
         case $keyboard->buttons['location']:
-            require_once 'actions/location.php';
+            require_once 'actions/location/location.php';
             break;
         case $keyboard->buttons['self_service']:
-            require_once 'actions/self_service.php';
+            require_once 'actions/self_service/self_service.php';
             break;
         case $keyboard->buttons['week']:
-            require_once 'actions/week.php';
+            require_once 'actions/week/week.php';
             break;
         case $keyboard->buttons['internet']:
-            require_once 'actions/internet_credit.php';
+            require_once 'actions/internet_credit/internet_credit.php';
             break;
         default:
             require_once 'actions/start.php';

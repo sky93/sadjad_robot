@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../autoload.php';
+require_once dirname(__FILE__) . '/../../autoload.php';
 
 function formatBytes($bytes, $precision = 2, $dec_point = '.', $thousands_sep = ',')
 {
@@ -166,4 +166,3 @@ elseif ( $data->text != $keyboard->buttons['internet'] &&
         $telegram->sendMessage($content);
     }
 }
-

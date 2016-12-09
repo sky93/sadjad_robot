@@ -1,7 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../autoload.php';
-require_once dirname(__FILE__) . '/../lib/jdatetime.class.php';
-$date = new jDateTime(true, true, 'Asia/Tehran');
+require_once dirname(__FILE__) . '/../../autoload.php';
 
 if ( $data->text == $keyboard->buttons['go_back']) {
 
@@ -73,12 +71,14 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     $json = json_decode($all);
     
     if ( $json->meta->message == 'OK' ) {
+
+        $out = '';
         foreach($json->data as $item) {
-            $out .=  "✅ نام کتاب: " . $item->title . "\n";
-            $out .=  "👤  نویسنده کتاب:  " . $item->author . "\n";
-            $out .=  "🔻  تاریخ دریافت کتاب:  " . $item->borrow_date->persian_date_formatted . "\n";
-            $out .=  "🔺  مهلت تحویل کتاب:  " . $item->borrow_date_ends->persian_date_formatted . "\n";
-            $out .=  "🚀  تعداد دفعات مجاز تمدید باقی مانده:  " . $item->times_of_borrow . " بار \n\n";
+            $out .= '✅ نام کتاب: ' . $item->title . '\n';
+            $out .= '👤  نویسنده:  ' . $item->author . '\n';
+            $out .= '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
+            $out .= '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
+            $out .= '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
         }
         $content = [
             'chat_id' => $data->chat_id,
@@ -87,7 +87,9 @@ if ( $data->text == $keyboard->buttons['go_back']) {
             'reply_markup' => $keyboard->save_dont_save()
         ];
         $telegram->sendMessage($content);
+
     } else {
+
         $database->update("users", [
             'last_query' => 'student_books',
             'book_username' => null,
@@ -145,12 +147,14 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     $json = json_decode($all);
 
     if ( $json->meta->message == 'OK' ) {
+
+        $out = '';
         foreach($json->data as $item) {
-            $out .=  "✅ نام کتاب: " . $item->title . "\n";
-            $out .=  "👤  نویسنده کتاب:  " . $item->author . "\n";
-            $out .=  "🔻  تاریخ دریافت کتاب:  " . $item->borrow_date->persian_date_formatted . "\n";
-            $out .=  "🔺  مهلت تحویل کتاب:  " . $item->borrow_date_ends->persian_date_formatted . "\n";
-            $out .=  "🚀  تعداد دفعات مجاز تمدید باقی مانده:  " . $item->times_of_borrow . " بار \n\n";
+            $out .=  '✅ نام کتاب: ' . $item->title . '\n';
+            $out .=  '👤  نویسنده:  ' . $item->author . '\n';
+            $out .=  '🔻  تاریخ دریافت کتاب:  ' . $item->borrow_date->persian_date_formatted . "\n";
+            $out .=  '🔺  مهلت تحویل کتاب:  ' . $item->borrow_date_ends->persian_date_formatted . "\n";
+            $out .=  '🚀  تعداد دفعات مجاز تمدید باقی مانده:  ' . $item->times_of_borrow . ' بار' . "\n\n";
         }
         $content = [
             'chat_id' => $data->chat_id,
