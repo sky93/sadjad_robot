@@ -54,9 +54,12 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
     ];
     $telegram->sendMessage($content);
 
-} elseif (
-    ($data->text == $keyboard->buttons['self_service_credit'] ||
-    $data->text == $keyboard->buttons['self_service_this_week']) &&
+} elseif
+(
+    (
+        $data->text == $keyboard->buttons['self_service_credit'] ||
+        $data->text == $keyboard->buttons['self_service_this_week']
+    ) &&
     $constants->user('self_service_username') !== null &&
     $constants->user('self_service_password') === null
 ) {
@@ -64,14 +67,17 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
     $content = [
         'chat_id' => $data->chat_id,
         'parse_mode' => 'Markdown',
-        'text' => '🔺' . "نام کاربری: " . "`" . $constants->user('internet_username') . "`" . "\n\n" .  "رمز عبور حساب اینترنت خود را وارد نمایید:",
+        'text' => '🔺' . "نام کاربری: " . "`" . $constants->user('self_service_username') . "`" . "\n\n" .  "رمز عبور حساب اینترنت خود را وارد نمایید:",
         'reply_markup' => $keyboard->go_back()
     ];
     $telegram->sendMessage($content);
 }
-elseif (
-    ($data->text != $keyboard->buttons['self_service_credit'] ||
-        $data->text != $keyboard->buttons['self_service_this_week']) &&
+elseif
+(
+    (
+        $data->text != $keyboard->buttons['self_service_credit'] ||
+        $data->text != $keyboard->buttons['self_service_this_week']
+    ) &&
     $constants->user('self_service_username') !== null &&
     $constants->user('self_service_password') === null
 ) {
@@ -86,7 +92,7 @@ elseif (
     ];
 
     if ( $constants->user('last_request') == $keyboard->buttons['self_service_credit'] ) {
-        $all = file_get_contents('https://sephr.me/v1/self_service_credits?' . http_build_query($login));
+        $all = file_get_contents('https://api.sadjad.ac.ir/v1/self_service_credits?' . http_build_query($login));
         $json = json_decode($all);
         if ($json->meta->message == 'OK') {
             $content = [
@@ -112,7 +118,7 @@ elseif (
             $telegram->sendMessage($content);
         }
     } else {
-        $all = file_get_contents('https://sephr.me/v1/self_service_menu?' . http_build_query($login));
+        $all = file_get_contents('https://api.sadjad.ac.ir/v1/self_service_menu?' . http_build_query($login));
         $json = json_decode($all);
 
         if ( $json->meta->message == 'OK' ) {
@@ -174,8 +180,8 @@ elseif (
     $telegram->sendMessage($content);
 
 } elseif ( $data->text == $keyboard->buttons['self_service_credit'] &&
-    $constants->user('internet_username') !== null &&
-    $constants->user('internet_password') !== null
+    $constants->user('self_service_username') !== null &&
+    $constants->user('self_service_password') !== null
 ) {
 
     $database->update("users", [
@@ -188,7 +194,7 @@ elseif (
         'password' => $constants->user('self_service_password')
     ];
 
-    $all = file_get_contents('https://sephr.me/v1/self_service_credits?' . http_build_query($login));
+    $all = file_get_contents('https://api.sadjad.ac.ir/v1/self_service_credits?' . http_build_query($login));
     $json = json_decode($all);
 
     if ( $json->meta->message == 'OK' ) {
@@ -213,11 +219,13 @@ elseif (
         ];
         $telegram->sendMessage($content);
     }
-} elseif ( $data->text == $keyboard->buttons['self_service_this_week'] &&
-    $constants->user('internet_username') !== null &&
-    $constants->user('internet_password') !== null
+} elseif
+(
+    $data->text == $keyboard->buttons['self_service_this_week'] &&
+    $constants->user('self_service_username') !== null &&
+    $constants->user('self_service_password') !== null
 ) {
-
+    echo "test";
     $database->update("users", [
         'last_query' => null
     ], ['id' => $data->user_id]);
@@ -227,7 +235,7 @@ elseif (
         'password' => $constants->user('self_service_password')
     ];
 
-    $all = file_get_contents('https://sephr.me/v1/self_service_menu?' . http_build_query($login));
+    $all = file_get_contents('https://api.sadjad.ac.ir/v1/self_service_menu?' . http_build_query($login));
     $json = json_decode($all);
 
     if ( $json->meta->message == 'OK' ) {
@@ -262,4 +270,3 @@ elseif (
     }
 
 }
-
