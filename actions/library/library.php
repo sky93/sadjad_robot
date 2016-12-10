@@ -74,7 +74,7 @@ if ( $data->text == $keyboard->buttons['go_back']) {
     $json = json_decode($all);
     
     if ( $json->meta->message == 'OK' ) {
-        
+
         $out = '';
         if ($json->data) {
             foreach ($json->data as $item) {
