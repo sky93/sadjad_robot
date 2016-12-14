@@ -15,6 +15,10 @@ if ($constants->last_message === null) {
     
 } elseif ( $data->text == $keyboard->buttons['cancel_news'] ) {
 
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
     $database->update("users", ['last_query' => null], ['id' => $data->user_id]);
     $cancel_news = '';
     $rss = simplexml_load_file('http://sadjad.ac.ir/RSS.aspx?get=/mTHhwxvFPiGUClK4/Ry9w4zK6mTw826G9x7gdUuu2E=');
@@ -29,7 +33,10 @@ if ($constants->last_message === null) {
     ]);
 
 } elseif ( $data->text == $keyboard->buttons['acm_news'] ) {
-
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
     $database->update("users", ['last_query' => null], ['id' => $data->user_id]);
     $cancel_news = '';
     $rss = simplexml_load_file('http://sadjad.ac.ir/RSS.aspx?S=19&D=0&N=8');
@@ -45,7 +52,10 @@ if ($constants->last_message === null) {
     ]);
 
 } elseif ( $data->text == $keyboard->buttons['all_news'] ) {
-
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
     $database->update("users", ['last_query' => null], ['id' => $data->user_id]);
     $cancel_news = '';
     $rss = simplexml_load_file('http://sadjad.ac.ir/RSS.aspx?S=0&D=0&N=10');
