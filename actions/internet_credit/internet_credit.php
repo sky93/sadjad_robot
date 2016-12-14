@@ -68,6 +68,10 @@ elseif ( $data->text != $keyboard->buttons['internet'] &&
     $constants->user('internet_username') !== null &&
     $constants->user('internet_password') === null
 ) {
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
 
     $database->update("users", [
         'last_query' => 'internet_credit',
@@ -91,6 +95,10 @@ elseif ( $data->text != $keyboard->buttons['internet'] &&
         ];
         $telegram->sendMessage($content);
     } else {
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
         $database->update("users", [
             'last_query' => 'internet_credit',
             'internet_username' => null,
@@ -134,7 +142,10 @@ elseif ( $data->text != $keyboard->buttons['internet'] &&
     $constants->user('internet_username') !== null &&
     $constants->user('internet_password') !== null
 ) {
-
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
     $login = [
         'username' => $constants->user('internet_username'),
         'password' => $constants->user('internet_password')
@@ -152,6 +163,10 @@ elseif ( $data->text != $keyboard->buttons['internet'] &&
         ];
         $telegram->sendMessage($content);
     } else {
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
         $database->update("users", [
             'last_query' => 'internet_credit',
             'internet_username' => null,

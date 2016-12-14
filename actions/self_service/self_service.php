@@ -81,6 +81,10 @@ elseif
     $constants->user('self_service_username') !== null &&
     $constants->user('self_service_password') === null
 ) {
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
     $database->update("users", [
         'last_query' => 'self_service',
         'self_service_password' => $data->text
@@ -118,6 +122,10 @@ elseif
             $telegram->sendMessage($content);
         }
     } else {
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
         $all = file_get_contents('https://api.sadjad.ac.ir/v1/self_service_menu?' . http_build_query($login));
         $json = json_decode($all);
 
@@ -183,7 +191,10 @@ elseif
     $constants->user('self_service_username') !== null &&
     $constants->user('self_service_password') !== null
 ) {
-
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
     $database->update("users", [
         'last_query' => null,
         'last_request' => null,
@@ -225,7 +236,10 @@ elseif
     $constants->user('self_service_username') !== null &&
     $constants->user('self_service_password') !== null
 ) {
-    echo "test";
+    $telegram->sendChatAction([
+        'chat_id' => $data->chat_id,
+        'action' => 'typing'
+    ]);
     $database->update("users", [
         'last_query' => null
     ], ['id' => $data->user_id]);
