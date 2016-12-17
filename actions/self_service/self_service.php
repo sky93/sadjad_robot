@@ -122,10 +122,10 @@ elseif
             $telegram->sendMessage($content);
         }
     } else {
-    $telegram->sendChatAction([
-        'chat_id' => $data->chat_id,
-        'action' => 'typing'
-    ]);
+        $telegram->sendChatAction([
+            'chat_id' => $data->chat_id,
+            'action' => 'typing'
+        ]);
         $all = file_get_contents('https://api.sadjad.ac.ir/v1/self_service_menu?' . http_build_query($login));
         $json = json_decode($all);
 
