@@ -12,12 +12,12 @@ require_once dirname(__FILE__) . '/../../../autoload.php';
 function is_week_even()
 {
     date_default_timezone_set('Asia/Tehran');
-    $startDate = '2016-09-17';
-    $endDate = date("Y/m/d");
-    $startDateWeekCnt = round(floor( date('d',strtotime($startDate)) / 7)) ;
-    $endDateWeekCnt = round(floor( date('d',strtotime($endDate)) / 7)) ;
-    $date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($startDate)));
-    $total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7) + $endDateWeekCnt - $startDateWeekCnt;
+    $start_date = '2016-09-17';
+    $endDate = date("Y-m-d");
+    $startDateWeekCnt = round(floor( date('d',strtotime($start_date)) / 7)) ;
+    $endDateWeekCnt = round(ceil( date('d',strtotime($endDate)) / 7)) ;
+    $date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($start_date)));
+    $total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7)  + $endDateWeekCnt - $startDateWeekCnt;
     return $total_no_OfWeek % 2 ? 0 : 1;
 }
 
