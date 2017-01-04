@@ -23,8 +23,9 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
 
 } elseif (
     (
-        $data->text == $keyboard->buttons['student_schedule'] ||        // User entered one menu from my_profile section
-        $data->text == $keyboard->buttons['student_exams']              // but they're not logged in yet.
+        $data->text == $keyboard->buttons['student_schedule'] ||
+        $data->text == $keyboard->buttons['student_exams'] ||           // User entered one menu from my_profile section
+        $data->text == $keyboard->buttons['exam_card']                  // but they're not logged in yet.
     ) &&                                                                // So we need to log them in first.
     (
         $constants->user('stu_username') === null ||
@@ -39,7 +40,7 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
     $constants->user('stu_username') === null ||                        // sub-menu or back button. Also either
     $constants->user('stu_password') === null                           // username or password is null (empty)
 ) {                                                                     // so they definitely entered either username
-    // or password. So we'll redirect them to login
+                                                                        // or password. So we'll redirect them to login
     $this_is_username_or_password = true;                               // section again.
     require_once dirname(__FILE__) . '/login.php';
 
@@ -47,7 +48,8 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
 // authentication.
 } elseif (
     $data->text == $keyboard->buttons['student_exams'] ||
-    $data->text == $keyboard->buttons['student_schedule']
+    $data->text == $keyboard->buttons['student_schedule'] ||
+    $data->text == $keyboard->buttons['exam_card']
 ) {
 
     // We could use only one if statement but for the sake of bot's modularity we decided to put this in a separate if statement
@@ -58,8 +60,11 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
         case $keyboard->buttons['student_exams']:
             require_once dirname(__FILE__) . '/sub-menu/exams.php';
             break;
+        case $keyboard->buttons['exam_card']:
+            require_once dirname(__FILE__) . '/sub-menu/exams_card.php';
+            break;
         default:                                                          // We have no idea what user entered. So we're
-            require_once dirname(__FILE__) . '/../../actions/start.php';   // gonna show them the start menu.
+            require_once dirname(__FILE__) . '/../../actions/start.php';  // gonna show them the start menu.
             break;
     }
 

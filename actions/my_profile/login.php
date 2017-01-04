@@ -64,13 +64,16 @@ if (
         $ask_user_to_save_credentials = true;
 
         switch ($constants->user('last_request')) {
+            case $keyboard->buttons['exam_card']:
+                require_once dirname(__FILE__) . '/sub-menu/exams_card.php';
+                break;
             case $keyboard->buttons['student_schedule']:
                 require_once dirname(__FILE__) . '/sub-menu/schedule.php';
                 break;
             case $keyboard->buttons['student_exams']:
                 require_once dirname(__FILE__) . '/sub-menu/exams.php';
                 break;
-            default:                                                          // We have no idea what user entered. So we're
+            default:                                                           // We have no idea what user entered. So we're
                 require_once dirname(__FILE__) . '/../../actions/start.php';   // gonna show them the start menu.
                 break;
         }

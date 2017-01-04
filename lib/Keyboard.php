@@ -26,6 +26,7 @@ class keyboard
         'acm_news'                      => '⌨ اخبار مسابقه‌ی acm',
         'all_news'                      => '📻 تمامی خبرها',
         'student_exams'                 => '🚀 برنامه امتحانی من',
+        'exam_card'                     => '📄 مشاهده کارت ورود به جلسه',
     ];
 
 
@@ -88,6 +89,9 @@ class keyboard
                                  [
                                      "' . $this->buttons['student_schedule'] . '",
                                      "' . $this->buttons['student_exams'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['exam_card'] . '"
                                  ],
                                  [
                                      "' . $this->buttons['go_back'] . '"
