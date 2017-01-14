@@ -27,6 +27,7 @@ class keyboard
         'all_news'                      => '📻 تمامی خبرها',
         'student_exams'                 => '🚀 برنامه امتحانی من',
         'exam_card'                     => '📄 مشاهده کارت ورود به جلسه',
+        'my_grades'                     => '💯 نمرات ترم من',
     ];
 
 
@@ -92,6 +93,9 @@ class keyboard
                                  ],
                                  [
                                      "' . $this->buttons['exam_card'] . '"
+                                 ],
+                                 [
+                                     "' . $this->buttons['my_grades'] . '"
                                  ],
                                  [
                                      "' . $this->buttons['go_back'] . '"
