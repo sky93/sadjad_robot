@@ -25,6 +25,7 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
     (
         $data->text == $keyboard->buttons['student_schedule'] ||
         $data->text == $keyboard->buttons['my_grades'] ||
+        $data->text == $keyboard->buttons['my_grades_summary'] ||
         $data->text == $keyboard->buttons['student_exams'] ||           // User entered one menu from my_profile section
         $data->text == $keyboard->buttons['exam_card']                  // but they're not logged in yet.
     ) &&                                                                // So we need to log them in first.
@@ -50,12 +51,16 @@ if ( $data->text == $keyboard->buttons['go_back'] ) {
 } elseif (
     $data->text == $keyboard->buttons['student_exams'] ||
     $data->text == $keyboard->buttons['my_grades'] ||
+    $data->text == $keyboard->buttons['my_grades_summary'] ||
     $data->text == $keyboard->buttons['student_schedule'] ||
     $data->text == $keyboard->buttons['exam_card']
 ) {
 
     // We could use only one if statement but for the sake of bot's modularity we decided to put this in a separate if statement
     switch ($data->text) {
+        case $keyboard->buttons['my_grades_summary']:
+            require_once dirname(__FILE__) . '/sub-menu/my_grades_summary.php';
+            break;
         case $keyboard->buttons['my_grades']:
             require_once dirname(__FILE__) . '/sub-menu/my_grades.php';
             break;

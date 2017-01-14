@@ -64,6 +64,9 @@ if (
         $ask_user_to_save_credentials = true;
 
         switch ($constants->user('last_request')) {
+            case $keyboard->buttons['my_grades_summary']:
+                require_once dirname(__FILE__) . '/sub-menu/my_grades_summary.php';
+                break;
             case $keyboard->buttons['my_grades']:
                 require_once dirname(__FILE__) . '/sub-menu/my_grades.php';
                 break;
