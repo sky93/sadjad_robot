@@ -48,542 +48,54 @@ class Telegram {
         return $this->endpoint("getMe", array(), false);
     }
 
-    /// Send a message
-    /**
-     * Contacts the various API's endpoints<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * * </tr>
-     * <tr>
-     * <td>text</td>
-     * <td>String</td>
-     * <td>Yes</td>
-     * <td>Text of the message to be sent</td>
-     * </tr>
-     * <tr>
-     * <td>parse_mode</td>
-     * <td>String</td>
-     * <td>Optional</td>
-     * <td>Send <em>Markdown</em>, if you want Telegram apps to show bold, italic and inline URLs in your bot's message. For the moment, only Telegram for Android supports this.</td>
-     * </tr>
-     * <tr>
-     * <td>disable_web_page_preview</td>
-     * <td>Boolean</td>
-     * <td>Optional</td>
-     * <td>Disables link previews for links in this message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup or ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendMessage(array $content) {
         return $this->endpoint("sendMessage", $content);
     }
 
-    /// Answer a callback Query
-    /**
-     * Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, <em>True</em> is returned.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>callback_query_id</td>
-     * <td>String</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the query to be answered</td>
-     * </tr>
-     * <tr>
-     * <td>text</td>
-     * <td>String</td>
-     * <td>Optional</td>
-     * <td>Text of the notification. If not specified, nothing will be shown to the user</td>
-     * </tr>
-     * <tr>
-     * <td>show_alert</td>
-     * <td>Boolean</td>
-     * <td>Optional</td>
-     * <td>If <em>true</em>, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to <em>false</em>.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
+    public function editMessageText(array $content) {
+        return $this->endpoint("editMessageText", $content);
+    }
+
     public function answerCallbackQuery(array $content) {
         return $this->endpoint("answerCallbackQuery", $content);
     }
 
-    /// Forward a message
-    /**
-     * Use this method to forward messages of any kind. On success, the sent Message is returned<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>from_chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the chat where the original message was sent — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>message_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique message identifier</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function forwardMessage(array $content) {
         return $this->endpoint("forwardMessage", $content);
     }
 
-    /// Send a photo
-    /**
-     * Use this method to send photos. On success, the sent Message is returned.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>photo</td>
-     * <td><a href="#inputfile">InputFile</a> or String</td>
-     * <td>Yes</td>
-     * <td>Photo to send. You can either pass a <em>file_id</em> as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.</td>
-     * </tr>
-     * <tr>
-     * <td>caption</td>
-     * <td>String</td>
-     * <td>Optional</td>
-     * <td>Photo caption (may also be used when resending photos by <em>file_id</em>).</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup or >ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendPhoto(array $content) {
         return $this->endpoint("sendPhoto", $content);
     }
 
-    /// Send an audio
-    /**
-     * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .mp3 format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
-
-     * For backward compatibility, when the fields title and performer are both empty and the mime-type of the file to be sent is not audio/mpeg, the file will be sent as a playable voice message. For this to work, the audio must be in an .ogg file encoded with OPUS. This behavior will be phased out in the future. For sending voice messages, use the sendVoice method instead.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>audio</td>
-     * <td><a href="#inputfile">InputFile</a> or String</td>
-     * <td>Yes</td>
-     * <td>Audio file to send. You can either pass a <em>file_id</em> as String to resend an audio that is already on the Telegram servers, or upload a new audio file using <strong>multipart/form-data</strong>.</td>
-     * </tr>
-     * <tr>
-     * <td>duration</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>Duration of the audio in seconds</td>
-     * </tr>
-     * <tr>
-     * <td>performer</td>
-     * <td>String</td>
-     * <td>Optional</td>
-     * <td>Performer</td>
-     * </tr>
-     * <tr>
-     * <td>title</td>
-     * <td>String</td>
-     * <td>Optional</td>
-     * <td>Track name</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup or ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendAudio(array $content) {
         return $this->endpoint("sendAudio", $content);
     }
 
-    /// Send a document
-    /**
-     * Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>document</td>
-     * <td>InputFile or String</td>
-     * <td>Yes</td>
-     * <td>File to send. You can either pass a <em>file_id</em> as String to resend a file that is already on the Telegram servers, or upload a new file using <strong>multipart/form-data</strong>.</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup or ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendDocument(array $content) {
         return $this->endpoint("sendDocument", $content);
     }
 
-    /// Send a sticker
-    /**
-     * Use this method to send .webp stickers. On success, the sent Message is returned.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>sticker</td>
-     * <td><a href="#inputfile">InputFile</a> or String</td>
-     * <td>Yes</td>
-     * <td>Sticker to send. You can either pass a <em>file_id</em> as String to resend a sticker that is already on the Telegram servers, or upload a new sticker using <strong>multipart/form-data</strong>.</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup or ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendSticker(array $content) {
         return $this->endpoint("sendSticker", $content);
     }
 
-    /// Send a video
-    /**
-     * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>video</td>
-     * <td><a href="#inputfile">InputFile</a> or String</td>
-     * <td>Yes</td>
-     * <td>Video to send. You can either pass a <em>file_id</em> as String to resend a video that is already on the Telegram servers, or upload a new video file using <strong>multipart/form-data</strong>.</td>
-     * </tr>
-     * <tr>
-     * <td>duration</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>Duration of sent video in seconds</td>
-     * </tr>
-     * <tr>
-     * <td>caption</td>
-     * <td>String</td>
-     * <td>Optional</td>
-     * <td>Video caption (may also be used when resending videos by <em>file_id</em>).</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup or ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendVideo(array $content) {
         return $this->endpoint("sendVideo", $content);
     }
 
-    /// Send a voice message
-    /**
-     *  Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>voice</td>
-     * <td><a href="#inputfile">InputFile</a> or String</td>
-     * <td>Yes</td>
-     * <td>Audio file to send. You can either pass a <em>file_id</em> as String to resend an audio that is already on the Telegram servers, or upload a new audio file using <strong>multipart/form-data</strong>.</td>
-     * </tr>
-     * <tr>
-     * <td>duration</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>Duration of sent audio in seconds</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup</a> or ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendVoice(array $content) {
         return $this->endpoint("sendVoice", $content);
     }
 
-    /// Send a location
-    /**
-     *  Use this method to send point on the map. On success, the sent Message is returned.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>latitude</td>
-     * <td>Float number</td>
-     * <td>Yes</td>
-     * <td>Latitude of location</td>
-     * </tr>
-     * <tr>
-     * <td>longitude</td>
-     * <td>Float number</td>
-     * <td>Yes</td>
-     * <td>Longitude of location</td>
-     * </tr>
-     * <tr>
-     * <td>reply_to_message_id</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>If the message is a reply, ID of the original message</td>
-     * </tr>
-     * <tr>
-     * <td>reply_markup</td>
-     * <td>ReplyKeyboardMarkup or ReplyKeyboardHide or ForceReply</td>
-     * <td>Optional</td>
-     * <td>Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendLocation(array $content) {
         return $this->endpoint("sendLocation", $content);
     }
 
-    /// Send a chat action
-    /**
-     *  Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
-
-     * Example: The ImageBot needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo. The user will see a “sending photo” status for the bot.
-
-     * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>chat_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier for the message recipient — User or GroupChat id</td>
-     * </tr>
-     * <tr>
-     * <td>action</td>
-     * <td>String</td>
-     * <td>Yes</td>
-     * <td>Type of action to broadcast. Choose one, depending on what the user is about to receive: <em>typing</em> for text messages, <em>upload_photo</em> for photos, <em>record_video</em> or <em>upload_video</em> for videos, <em>record_audio</em> or <em>upload_audio</em> for audio files, <em>upload_document</em> for general files, <em>find_location</em> for location data.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function sendChatAction(array $content) {
         return $this->endpoint("sendChatAction", $content);
     }
 
-    /// Get a list of profile pictures for a user
-    /**
-     *  Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.<br/>Values inside $content:<br/>
-     * <table>
-     * <tr>
-     * <td><strong>Parameters</strong></td>
-     * <td><strong>Type</strong></td>
-     * <td><strong>Required</strong></td>
-     * <td><strong>Description</strong></td>
-     * </tr>
-     * <tr>
-     * <td>user_id</td>
-     * <td>Integer</td>
-     * <td>Yes</td>
-     * <td>Unique identifier of the target user</td>
-     * </tr>
-     * <tr>
-     * <td>offset</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>Sequential number of the first photo to be returned. By default, all photos are returned.</td>
-     * </tr>
-     * <tr>
-     * <td>limit</td>
-     * <td>Integer</td>
-     * <td>Optional</td>
-     * <td>Limits the number of photos to be retrieved. Values between 1—100 are accepted. Defaults to 100.</td>
-     * </tr>
-     * </table>
-     * \param $content the request parameters as array 
-     * \return the JSON Telegram's reply
-     */
     public function getUserProfilePhotos(array $content) {
         return $this->endpoint("getUserProfilePhotos", $content);
     }
