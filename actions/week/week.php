@@ -2,16 +2,9 @@
 require_once dirname(__FILE__) . '/../../autoload.php';
 
 date_default_timezone_set('Asia/Tehran');
-$strtDate = '2016-09-17';
-$endDate = date("Y-m-d");
-
-$startDateWeekCnt = round(floor( date('d',strtotime($strtDate)) / 7)) ;
-$endDateWeekCnt = round(ceil( date('d',strtotime($endDate)) / 7)) ;
-
-
 $letter = [
     'صفرم!',
-    'اوّل',
+    'اول',
     'دوم',
     'سوم',
     'چهارم',
@@ -51,29 +44,17 @@ $letter2 = [
     'هفده'
 ];
 
-$date_diff = strtotime(date('Y-m',strtotime($endDate))) - strtotime(date('Y-m',strtotime($strtDate)));
-$total_no_OfWeek = round(floor($date_diff/(60*60*24)) / 7)  + $endDateWeekCnt - $startDateWeekCnt;
-$t = 16 - $total_no_OfWeek;
-if( $total_no_OfWeek % 2 == 0 ) {
-    $total_no_OfWeek = $letter[(int)$total_no_OfWeek];
-    $t = $letter2[$t];
-    $content = [
-        'chat_id' => $data->chat_id,
-        'parse_mode' => 'Markdown',
-        'text' =>
-            "هفته `زوج` آموزشی (هفته *$total_no_OfWeek*)" . "\n" .
-            "*" . $t . "*" . ' ' . "هفته تا پایان این ترم"
-    ];
-    $telegram->sendMessage($content);
-} else {
-    $total_no_OfWeek = $letter[(int)$total_no_OfWeek];
-    $t = $letter2[$t];
-    $content = [
-        'chat_id' => $data->chat_id,
-        'parse_mode' => 'Markdown',
-        'text' =>
-            "هفته `فرد` آموزشی (هفته *$total_no_OfWeek*)" . "\n" .
-            "*" . $t . "*" . ' ' . "هفته تا پایان این ترم"
-    ];
-    $telegram->sendMessage($content);
-}
+
+$a = strtotime('2017/02/18');
+$now = time();
+$b = $a + (60*60*24*7*16);
+
+$odd = (floor( ($now - $a) / 60 / 60 / 24 / 7 ) % 2) ? 'زوج' : 'فرد';
+$count = (int)ceil(($now - $a) / 60 / 60 / 24 / 7 );
+
+$ttt = $telegram->sendMessage([
+    'chat_id' => $data->chat_id,
+    'parse_mode' => 'Markdown',
+    'text' => "هفته `" . $odd  . "` آموزشی (هفته *". $letter[$count] ."*)" . "\n" .
+        "*" . $letter2[(int)ceil(($b - $now) / 60 / 60 / 24 / 7)] . "*" . ' ' . "هفته تا پایان این ترم مانده‌است . . ."
+]);
