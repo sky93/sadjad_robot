@@ -46,15 +46,28 @@ $letter2 = [
 
 
 $a = strtotime('2017/02/18');
-$now = time();
+if (date('D') == 'Fri'){
+    $now = time() + (24 * 60 * 60);
+} else{
+    $now = time();
+}
 $b = $a + (60*60*24*7*16);
 
 $odd = (floor( ($now - $a) / 60 / 60 / 24 / 7 ) % 2) ? 'زوج' : 'فرد';
 $count = (int)ceil(($now - $a) / 60 / 60 / 24 / 7 );
 
-$ttt = $telegram->sendMessage([
-    'chat_id' => $data->chat_id,
-    'parse_mode' => 'Markdown',
-    'text' => "هفته `" . $odd  . "` آموزشی (هفته *". $letter[$count] ."*)" . "\n" .
-        "*" . $letter2[(int)ceil(($b - $now) / 60 / 60 / 24 / 7)] . "*" . ' ' . "هفته تا پایان این ترم مانده‌است . . ."
-]);
+if (date('D') == 'Fri'){
+        $telegram->sendMessage([
+            'chat_id' => $data->chat_id,
+            'parse_mode' => 'Markdown',
+            'text' => "هفته بعد (فردا)، هفته `" . $odd  . "` آموزشی (هفته *". $letter[$count] ."*)" . " خواهد بود." ."\n" .
+                      "*" . $letter2[(int)ceil(($b - $now) / 60 / 60 / 24 / 7)] . "*" . ' ' . "هفته تا پایان این ترم مانده‌است . . ."
+        ]);
+    }else{
+        $telegram->sendMessage([
+            'chat_id' => $data->chat_id,
+            'parse_mode' => 'Markdown',
+            'text' => "هفته `" . $odd  . "` آموزشی (هفته *". $letter[$count] ."*)" . "\n" .
+                      "*" . $letter2[(int)ceil(($b - $now) / 60 / 60 / 24 / 7)] . "*" . ' ' . "هفته تا پایان این ترم مانده‌است . . ."
+        ]);
+    }
